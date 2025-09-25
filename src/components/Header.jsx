@@ -49,13 +49,13 @@ const Header = () => {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <Link to="/" className="flex items-center space-x-3">
-                <motion.div
+                <motion.img
                   whileHover={{ rotate: 8 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center shadow-glow"
-                >
-                  <Sparkles className="w-5 h-5 text-white" />
-                </motion.div>
+                  src="/logo.jpg"
+                  alt="Nagomi Logo"
+                  className="w-12 h-12 rounded-full object-cover shadow-glow"
+                />
                 <div className="flex flex-col">
                   <span className="font-serif text-2xl font-bold text-gray-900 transition-colors duration-300">
                     NAGOMI
