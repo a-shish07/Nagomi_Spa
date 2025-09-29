@@ -58,7 +58,7 @@ export default function Makeup() {
               ['Personalized Service', 'Looks tailored to features, outfit, and light.'],
             ].map(([title, desc], i) => (
               <div key={i} className="feature-card">
-                <h3 className="section-heading m-0">{title}</h3>
+                <h3 className="section-heading mb-2 leading-tight">{title}</h3>
                 <p className="text-gray-600">{desc}</p>
               </div>
             ))}

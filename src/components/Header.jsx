@@ -54,14 +54,14 @@ const Header = () => {
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
                   src="/logo.jpg"
                   alt="Nagomi Logo"
-                  className="w-12 h-12 rounded-full object-cover shadow-glow"
+                  className="w-16 h-16 rounded-full object-cover shadow-glow"
                 />
                 <div className="flex flex-col">
                   <span className="font-serif text-2xl font-bold text-gray-900 transition-colors duration-300">
                     NAGOMI
                   </span>
                   <span className="font-light text-xs tracking-wider text-primary-600 transition-colors duration-300">
-                    SPA & WELLNESS
+                  WELLNESS & BEAUTY SALON
                   </span>
                 </div>
               </Link>

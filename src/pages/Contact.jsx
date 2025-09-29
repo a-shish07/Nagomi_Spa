@@ -115,7 +115,7 @@ const Contact = () => {
       <section className="relative min-h-[26rem] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1556228453-efd1e0c36f07?q=80&w=2070&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
             alt="Contact Hero"
             className="w-full h-full object-cover"
           />
@@ -151,7 +151,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="hero-title mb-3 bg-white/90 backdrop-blur-sm rounded-2xl p-6 inline-block"
+            className="hero-title mb-6 backdrop-blur-sm rounded-2xl p-4 inline-block"
           >
             Contact Nagomi
           </motion.h1>
@@ -160,7 +160,7 @@ const Contact = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="hero-subtitle bg-white/80 backdrop-blur-sm rounded-xl p-4 inline-block"
+            className="hero-subtitle  text-white font-semibold rounded-xl p-4 inline-block"
           >
             A premium wellness experience—crafted with care, delivered with elegance.
           </motion.p>

@@ -3,8 +3,8 @@ import { Heart, Diamond, Leaf, Star, Sparkles, Camera, Eye, ArrowRight, Clock, C
 import { motion, AnimatePresence } from "framer-motion";
 
 const Gallery = () => {
-  // Default offset: 96 days, 12 hours, 12 minutes from first visit
-  const DEFAULT_OFFSET_MS = (96 * 24 * 60 * 60 + 12 * 60 * 60 + 12 * 60) * 1000;
+  // Default offset: 37 days, 12 hours, 12 minutes from first visit
+  const DEFAULT_OFFSET_MS = (37 * 24 * 60 * 60 + 12 * 60 * 60 + 12 * 60) * 1000;
 
   const getTargetDate = () => {
     try {
@@ -143,7 +143,7 @@ const Gallery = () => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+            src="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
             alt="Gallery Background"
             className="w-full h-full object-cover"
           />
@@ -209,7 +209,7 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
-            className="hero-title mb-8 bg-white/90 backdrop-blur-sm rounded-2xl p-6 inline-block"
+            className="hero-title mb-6 backdrop-blur-sm rounded-2xl p-4 inline-block"
           >
             Our Gallery
           </motion.h1>
@@ -218,7 +218,7 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="hero-subtitle mb-12 bg-white/80 backdrop-blur-sm rounded-xl p-4 inline-block"
+            className="hero-subtitle mb-12 text-white font-semibold rounded-xl p-4 inline-block"
           >
             Unveiling the serene beauty of Nagomi — where every moment tells a story
             of tranquility and transformation
@@ -283,7 +283,7 @@ const Gallery = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="floating-card p-6 bg-white text-gray-900 group"
+                    className="floating-card p-6 bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm text-gray-900 group"
                     whileHover={{ scale: 1.05 }}
                   >
                     <div className="text-primary-600 mb-2 flex justify-center group-hover:scale-110 transition-transform">
@@ -305,7 +305,7 @@ const Gallery = () => {
 
 
       {/* Features Grid */}
-      <section className="py-24 relative">
+      <section className="py-24 relative bg-gradient-to-br from-primary-50 via-white to-warm-50">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -330,7 +330,7 @@ const Gallery = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="floating-card p-8 text-center group"
+                className="floating-card p-8 text-center group bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
                 whileHover={{ 
                   scale: 1.05,
                   y: -5

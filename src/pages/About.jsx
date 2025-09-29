@@ -77,7 +77,7 @@ const About = () => {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-warm-50">
+    <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-primary-200 via-primary-50 to-warm-200">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {/* Floating particles */}
@@ -460,7 +460,7 @@ const About = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-accent-50 via-primary-50 to-warm-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -468,7 +468,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="section-title">What Makes Us Special</h2>
+            <h2 className="section-title ">What Makes Us Special</h2>
             <p className="section-subtitle">
               Discover the essence of Nagomi through our core values and exceptional services
             </p>
@@ -493,7 +493,7 @@ const About = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-br from-primary-50 via-white to-accent-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <motion.div

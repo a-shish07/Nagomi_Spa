@@ -67,7 +67,7 @@ const Services = () => {
     : services.filter(service => service.category === activeFilter)
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-warm-50">
       {/* Hero Section */}
       <section className="relative h-96 bg-gradient-to-r from-primary/90 to-primary/70 flex items-center justify-center">
         <div 
@@ -169,10 +169,10 @@ const Services = () => {
                   </ul>
 
                   <Link
-                    to={service.link}
+                    to="/contact-us"
                     className="w-full btn-primary text-center block"
                   >
-                    Learn More
+                    Book Now
                   </Link>
                 </div>
               </motion.div>

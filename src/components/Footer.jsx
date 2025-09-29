@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Sparkles, Heart } from 'lucide-react'
+import { Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const Footer = () => {
@@ -26,16 +26,16 @@ const Footer = () => {
               className="lg:col-span-2"
             >
               <Link to="/" className="inline-flex items-center space-x-3 mb-6 group">
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center shadow-glow group-hover:shadow-glow-lg transition-all duration-300"
-                >
-                  <Sparkles className="w-6 h-6 text-white" />
-                </motion.div>
+                <motion.img
+                  whileHover={{ rotate: 8 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  src="/logo.jpg"
+                  alt="Nagomi Logo"
+                  className="w-16 h-16 rounded-full object-cover shadow-glow"
+                />
                 <div className="flex flex-col">
                   <span className="font-serif text-3xl font-bold text-white">NAGOMI</span>
-                  <span className="font-light text-sm tracking-wider text-primary-300">SPA & WELLNESS</span>
+                  <span className="font-light text-sm tracking-wider text-primary-300">WELLNESS & BEAUTY SALON</span>
                 </div>
               </Link>
               <p className="text-gray-300 leading-relaxed text-lg mb-8 max-w-md">
@@ -120,7 +120,7 @@ const Footer = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              Copyright © 2025 nagomi.co.in. All Rights Reserved.
+              Copyright © 2025 nagomi.co.in. All Rights Reserved. | Opening in 37 Days
             </p>
             <div className="flex items-center space-x-4 text-sm">
               <span className="text-gray-400">Development by</span>

@@ -15,6 +15,7 @@ import WellnessSpa from './pages/WellnessSpa'
 import Makeup from './pages/Makeup'
 import Men from './pages/Men'
 import Women from './pages/Women'
+import Salon from './pages/Salon'
 
 function App() {
   const [isLoading, setIsLoading] = useState(false)
@@ -147,6 +148,17 @@ function App() {
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                       <Women />
+                    </motion.div>
+                  } />
+                  <Route path="/salon" element={
+                    <motion.div
+                      key="salon"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      <Salon />
                     </motion.div>
                   } />
                   <Route path="/contact-us" element={

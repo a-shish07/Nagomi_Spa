@@ -20,12 +20,45 @@ import {
   Quote,
   CheckCircle,
   Flower2,
+  Calendar,
 } from "lucide-react";
 
 const Home = () => {
+  // Countdown timer logic
+  const DEFAULT_OFFSET_MS = (37 * 24 * 60 * 60 + 12 * 60 * 60 + 12 * 60) * 1000;
+
+  const getTargetDate = () => {
+    try {
+      const stored = localStorage.getItem('galleryCountdownTarget');
+      if (stored) {
+        const t = parseInt(stored, 10);
+        if (!isNaN(t)) return new Date(t);
+      }
+    } catch (_) {}
+    const target = new Date(Date.now() + DEFAULT_OFFSET_MS);
+    try { localStorage.setItem('galleryCountdownTarget', target.getTime().toString()); } catch (_) {}
+    return target;
+  };
+
+  const calculateTimeLeft = (targetDate) => {
+    const now = new Date();
+    const difference = targetDate - now;
+
+    if (difference <= 0) {
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    }
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  };
+
   const [filter, setFilter] = useState("All");
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [videoError, setVideoError] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(getTargetDate()));
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, -50]);
   const y2 = useTransform(scrollY, [0, 300], [0, 25]);
@@ -39,14 +72,14 @@ const Home = () => {
       description:
         "Premium spa therapies that restore balance and glow — from therapeutic massages to mindful facials.",
       image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       link: "/wellness-spa",
       category: "Wellness Spa",
       features: [
         "Therapeutic Massage",
-        "Facial Treatments",
+        "Facial & Skin Treatments",
+        "Head & Scalp Therapies",
         "Body Therapies",
-        "Ayurvedic Healing",
       ],
     },
     {
@@ -56,7 +89,7 @@ const Home = () => {
       description:
         "Modern cuts, color artistry, and grooming for all — crafted by expert stylists.",
       image:
-        "https://images.unsplash.com/photo-1520637736862-4d197d17c80a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       link: "/salon",
       category: "Unisex Salon",
       features: [
@@ -79,8 +112,8 @@ const Home = () => {
       features: [
         "Bridal Makeup",
         "Event Styling",
-        "Photography",
-        "Special Occasions",
+        "Hair Styling",
+        "Party Makeup",
       ],
     },
   ];
@@ -185,15 +218,18 @@ const Home = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft(getTargetDate()));
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Ensure video plays smoothly and continuously
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      const handleLoadedData = () => {
-        video.play().catch(e => {
-          console.log('Video autoplay failed after load:', e);
-        });
-      };
+      let hasPlayed = false;
 
       const handleError = (e) => {
         console.error('Video failed to load:', e);
@@ -202,7 +238,7 @@ const Home = () => {
 
       const handlePause = () => {
         // Attempt to resume playback if paused unexpectedly
-        if (video.paused && !video.ended) {
+        if (hasPlayed && video.paused && !video.ended) {
           setTimeout(() => {
             video.play().catch(e => {
               console.log('Video resume failed:', e);
@@ -213,39 +249,37 @@ const Home = () => {
 
       const handleVisibilityChange = () => {
         // Resume video when page becomes visible again
-        if (!document.hidden && video.paused && !video.ended) {
+        if (hasPlayed && !document.hidden && video.paused && !video.ended) {
           video.play().catch(e => {
             console.log('Video resume on visibility change failed:', e);
           });
         }
       };
 
-      video.addEventListener('loadeddata', handleLoadedData);
+      const handleFirstInteraction = () => {
+        if (!hasPlayed && video) {
+          video.muted = true;
+          video.play().catch(e => {
+            console.log('Video play on interaction failed:', e);
+          });
+          hasPlayed = true;
+          document.removeEventListener('click', handleFirstInteraction);
+          document.removeEventListener('touchstart', handleFirstInteraction);
+        }
+      };
+
       video.addEventListener('error', handleError);
       video.addEventListener('pause', handlePause);
       document.addEventListener('visibilitychange', handleVisibilityChange);
-
-      // Ensure video stays muted and playing
-      video.muted = true;
-      video.play().catch(e => {
-        console.log('Video autoplay failed:', e);
-      });
-
-      // Continuous check to ensure video stays playing
-      const playCheckInterval = setInterval(() => {
-        if (video.paused && !video.ended && !document.hidden) {
-          video.play().catch(e => {
-            console.log('Video continuous play check failed:', e);
-          });
-        }
-      }, 1000);
+      document.addEventListener('click', handleFirstInteraction);
+      document.addEventListener('touchstart', handleFirstInteraction);
 
       return () => {
-        clearInterval(playCheckInterval);
-        video.removeEventListener('loadeddata', handleLoadedData);
         video.removeEventListener('error', handleError);
         video.removeEventListener('pause', handlePause);
         document.removeEventListener('visibilitychange', handleVisibilityChange);
+        document.removeEventListener('click', handleFirstInteraction);
+        document.removeEventListener('touchstart', handleFirstInteraction);
       };
     }
   }, []);
@@ -271,7 +305,7 @@ const Home = () => {
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               disablePictureInPicture
               controls={false}
               poster="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
@@ -336,16 +370,16 @@ const Home = () => {
             Journey with Nagomi
           </motion.h1>
 
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="hero-subtitle mb-10 text-white rounded-xl p-4 inline-block max-w-3xl"
+            className="text-base md:text-xl lg:text-xl font-light leading-relaxed max-w-4xl mx-auto tracking-wide text-black mb-10 text-white rounded-xl p-4 inline-block max-w-3xl"
           >
             Discover the art of mindful wellness in Bihar's premier sanctuary.
             Where ancient Japanese rituals meet modern luxury, creating moments
             of pure tranquility and radiant beauty.
-          </motion.p>
+          </motion.p> */}
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -353,13 +387,7 @@ const Home = () => {
             transition={{ duration: 1, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center "
           >
-            <Link
-              to="/about-us"
-              className="btn-primary group flex flex-row items-center hover:!text-black"
-            >
-              <span className="relative z-10">Discover Our Story</span>
-              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform relative z-10" />
-            </Link>
+            
             <button className="btn-secondary group flex flex-row items-center hover:!text-black">
               <Play className="w-5 h-5 mr-2 relative z-10" />
               <span className="relative z-10">Watch Our Story</span>
@@ -367,6 +395,8 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
+     
 
       {/* Soft Era Section (Revamped) */}
       <section className="py-28 relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-warm-50">
@@ -533,7 +563,7 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-gradient-to-br from-primary-50 to-warm-50 relative">
+      {/* <section className="py-24 bg-gradient-to-br from-primary-50 to-warm-50 relative">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -575,7 +605,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Services Showcase */}
       <section className="py-24 relative">
@@ -682,6 +712,71 @@ const Home = () => {
         </div>
       </section>
 
+       {/* Countdown Timer Section */}
+      <section className="py-24 bg-gradient-to-br from-primary-600 to-warm-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container-custom relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-block bg-white/10 backdrop-blur-sm text-primary-100 px-6 py-2 rounded-full text-sm font-medium tracking-wide mb-6">
+              <Calendar className="w-4 h-4 inline mr-2" />
+              Launch Countdown
+            </div>
+            <h2 className="section-title bg-white/90 backdrop-blur-sm rounded-2xl p-4 inline-block">Opening In</h2>
+            <p className="text-xl text-primary-100 max-w-2xl mx-auto font-mono tracking-wide">
+              {`${timeLeft.days || 0} Days ${timeLeft.hours || 0} Hours ${timeLeft.minutes || 0} Minutes ${timeLeft.seconds || 0} Seconds`}
+            </p>
+            <p className="text-xl text-primary-100 max-w-2xl mx-auto mt-2">
+              Be among the first to experience Bihar's most luxurious wellness destination
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="glass-card p-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                {[
+                  { value: timeLeft.days || 0, label: "Days", icon: <Calendar className="w-6 h-6" /> },
+                  { value: timeLeft.hours || 0, label: "Hours", icon: <Clock className="w-6 h-6" /> },
+                  { value: timeLeft.minutes || 0, label: "Minutes", icon: <Clock className="w-6 h-6" /> },
+                  { value: timeLeft.seconds || 0, label: "Seconds", icon: <Clock className="w-6 h-6" /> }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="floating-card p-6 bg-white text-gray-900 group"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="text-primary-600 mb-2 flex justify-center group-hover:scale-110 transition-transform">
+                      {item.icon}
+                    </div>
+                    <div className="text-3xl md:text-4xl font-bold mb-2 font-serif text-primary-700">
+                      {item.value}
+                    </div>
+                    <div className="text-sm md:text-base font-medium text-gray-600">
+                      {item.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Why Choose Nagomi Section */}
       <section className="py-32 relative overflow-hidden bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 text-white sheen-container">
         {/* Decorative gradient blooms + subtle pattern using Book Appointment tones */}
@@ -745,12 +840,12 @@ const Home = () => {
               >
                 Book Appointment
               </Link>
-              <Link
+              {/* <Link
                 to="/about-us"
                 className="btn-ghost text-black border-white"
               >
                 Learn More
-              </Link>
+              </Link> */}
             </div>
           </motion.div>
 
@@ -765,18 +860,6 @@ const Home = () => {
             {/* Gradient border wrapper */}
             <div className="relative rounded-3xl p-[1px] bg-gradient-to-r from-white/40 via-white/10 to-white/40 overflow-hidden">
               <div className="rounded-3xl bg-white/10 backdrop-blur-2xl p-8">
-                <h3 className="text-xl font-semibold mb-6">By the numbers</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-                  {stats.map((s, idx) => (
-                    <div key={idx} className="text-center">
-                      <div className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-white/10 border border-white/20 mb-2">
-                        {s.icon}
-                      </div>
-                      <div className="text-2xl font-bold">{s.number}</div>
-                      <div className="text-xs text-white/80">{s.label}</div>
-                    </div>
-                  ))}
-                </div>
 
                 {/* Trust badges */}
                 <div className="grid grid-cols-3 gap-3 mb-6">
