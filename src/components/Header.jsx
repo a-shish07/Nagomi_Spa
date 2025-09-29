@@ -52,7 +52,7 @@ const Header = () => {
                 <motion.img
                   whileHover={{ rotate: 8 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  src="/logo.jpg"
+                  src="/footer logo.jpg"
                   alt="Nagomi Logo"
                   className="w-16 h-16 rounded-full object-cover shadow-glow"
                 />

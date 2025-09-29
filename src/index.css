@@ -193,11 +193,11 @@
 
   .service-card::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-primary-50/50 via-transparent to-warm-50/50 opacity-0 transition-opacity duration-700;
+    @apply absolute inset-0 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 opacity-0 transition-opacity duration-700;
   }
 
   .service-card:hover::before {
-    /* @apply opacity-100; */
+    @apply opacity-30;
   }
 
   .service-card::after {
@@ -246,11 +246,11 @@
 
   .floating-card::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-primary-50/40 via-transparent to-warm-50/40 opacity-0 transition-opacity duration-700;
+    @apply absolute inset-0 bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 opacity-0 transition-opacity duration-700;
   }
 
   .floating-card:hover::before {
-    /* @apply opacity-100; */
+    @apply opacity-30;
   }
 
   .floating-card::after {

@@ -515,10 +515,10 @@ const Home = () => {
                     >
                       {item.icon}
                     </div>
-                    <div className="font-semibold text-gray-900">
+                    <div className="font-semibold text-black">
                       {item.title}
                     </div>
-                    <div className="text-sm text-gray-600 leading-relaxed">
+                    <div className="text-sm text-black leading-relaxed">
                       {item.sub}
                     </div>
                   </div>
@@ -554,7 +554,7 @@ const Home = () => {
                   >
                     <span className="font-bold">{s.n}</span>
                   </div>
-                  <div className="text-sm text-gray-700 font-medium">{s.l}</div>
+                  <div className="text-sm text-black font-medium">{s.l}</div>
                 </div>
               ))}
             </div>
@@ -598,7 +598,7 @@ const Home = () => {
                 </motion.div>
 
                 <h3 className="section-heading text-center">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-black leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>
@@ -677,13 +677,13 @@ const Home = () => {
                   </div>
 
                   <div className="p-8">
-                    <h3 className="text-2xl font-serif font-bold mb-2 text-gray-900">
+                    <h3 className="text-2xl font-serif font-bold mb-2 text-black">
                       {service.title}
                     </h3>
                     <p className="text-primary-600 font-medium mb-3">
                       {service.subtitle}
                     </p>
-                    <p className="text-gray-600 mb-6 leading-relaxed">
+                    <p className="text-black mb-6 leading-relaxed">
                       {service.description}
                     </p>
 
@@ -691,7 +691,7 @@ const Home = () => {
                       {service.features.map((feature, i) => (
                         <div
                           key={i}
-                          className="flex items-center text-sm text-gray-600"
+                          className="flex items-center text-sm text-black"
                         >
                           <CheckCircle className="w-4 h-4 text-primary-500 mr-2" />
                           {feature}
@@ -757,7 +757,7 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="floating-card p-6 bg-white text-gray-900 group"
+                    className="floating-card p-6 bg-white text-black group"
                     whileHover={{ scale: 1.05 }}
                   >
                     <div className="text-primary-600 mb-2 flex justify-center group-hover:scale-110 transition-transform">
@@ -766,7 +766,7 @@ const Home = () => {
                     <div className="text-3xl md:text-4xl font-bold mb-2 font-serif text-primary-700">
                       {item.value}
                     </div>
-                    <div className="text-sm md:text-base font-medium text-gray-600">
+                    <div className="text-sm md:text-base font-medium text-black">
                       {item.label}
                     </div>
                   </motion.div>
@@ -928,7 +928,7 @@ const Home = () => {
                 className="floating-card p-12 text-center"
               >
                 <Quote className="w-12 h-12 text-primary-400 mx-auto mb-6" />
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed italic">
+                <p className="text-lg text-black mb-8 leading-relaxed italic">
                   "{testimonials[currentTestimonial].content}"
                 </p>
 
@@ -939,7 +939,7 @@ const Home = () => {
                     className="w-16 h-16 rounded-full object-cover border-4 border-primary-200"
                   />
                   <div className="text-left">
-                    <h4 className="font-serif font-semibold text-gray-900">
+                    <h4 className="font-serif font-semibold text-black">
                       {testimonials[currentTestimonial].name}
                     </h4>
                     <p className="text-primary-600">

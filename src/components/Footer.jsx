@@ -29,7 +29,7 @@ const Footer = () => {
                 <motion.img
                   whileHover={{ rotate: 8 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  src="/logo.jpg"
+                  src="/footer logo.jpg"
                   alt="Nagomi Logo"
                   className="w-16 h-16 rounded-full object-cover shadow-glow"
                 />
@@ -41,9 +41,21 @@ const Footer = () => {
               <p className="text-gray-300 leading-relaxed text-lg mb-8 max-w-md">
                 Nagomi is a movement — a mood — a modern sanctuary for those who crave more than just surface beauty.
               </p>
-              <div className="flex items-center space-x-2 text-primary-300">
+              <div className="flex items-center space-x-2 text-primary-300 mb-6">
                 <Heart className="w-5 h-5" />
                 <span className="text-sm">Crafted with love in Bihar, India</span>
+              </div>
+              <div className="flex items-center space-x-6">
+                <img
+                  src="/startup_india.jpg"
+                  alt="Startup India"
+                  className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                />
+                <img
+                  src="/iso_logo.jpg"
+                  alt="ISO Certification"
+                  className="h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                />
               </div>
             </motion.div>
 

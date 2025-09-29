@@ -16,6 +16,10 @@ import Makeup from './pages/Makeup'
 import Men from './pages/Men'
 import Women from './pages/Women'
 import Salon from './pages/Salon'
+import TermsWellness from './pages/TermsWellness'
+import TermsSalon from './pages/TermsSalon'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import RefundPolicy from './pages/RefundPolicy'
 
 function App() {
   const [isLoading, setIsLoading] = useState(false)
@@ -159,6 +163,50 @@ function App() {
                       transition={{ duration: 0.6, ease: "easeOut" }}
                     >
                       <Salon />
+                    </motion.div>
+                  } />
+                  <Route path="/terms-conditions-wellness" element={
+                    <motion.div
+                      key="terms-wellness"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      <TermsWellness />
+                    </motion.div>
+                  } />
+                  <Route path="/terms-conditions-salon" element={
+                    <motion.div
+                      key="terms-salon"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      <TermsSalon />
+                    </motion.div>
+                  } />
+                  <Route path="/privacy-policy" element={
+                    <motion.div
+                      key="privacy"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      <PrivacyPolicy />
+                    </motion.div>
+                  } />
+                  <Route path="/refund-policy" element={
+                    <motion.div
+                      key="refund"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    >
+                      <RefundPolicy />
                     </motion.div>
                   } />
                   <Route path="/contact-us" element={
