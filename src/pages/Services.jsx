@@ -1,204 +1,201 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Sparkles, Scissors, Palette } from 'lucide-react'
+import { ArrowRight, CheckCircle } from 'lucide-react'
 
 const Services = () => {
-  const [activeFilter, setActiveFilter] = useState('All')
+  const [filter, setFilter] = useState('All')
 
   const services = [
     {
       id: 1,
       title: "Wellness Spa (Women)",
       subtitle: "Relax, Rejuvenate & Rediscover Yourself",
-      description: "Experience our comprehensive wellness spa treatments designed exclusively for women. From traditional massages to modern skincare therapies, find your path to complete relaxation.",
-      image: "/images/wellness-spa.jpg",
+      description:
+        "Premium spa therapies that restore balance and glow — from therapeutic massages to mindful facials.",
+      image:
+        "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       link: "/wellness-spa",
       category: "Wellness Spa",
-      icon: <Sparkles className="w-8 h-8" />,
       features: [
-        "Full body massage therapy",
-        "Facial treatments & skincare",
-        "Aromatherapy sessions",
-        "Body wraps & scrubs",
-        "Stress relief treatments"
-      ]
+        "Therapeutic Massage",
+        "Facial & Skin Treatments",
+        "Head & Scalp Therapies",
+        "Body Therapies",
+      ],
     },
     {
       id: 2,
       title: "Unisex Salon",
       subtitle: "Redefine Your Style, Elevate Your Confidence",
-      description: "Our unisex salon offers cutting-edge styling services for both men and women. From classic cuts to contemporary styles, express your unique personality.",
-      image: "/images/unisex-salon.jpg",
+      description:
+        "Modern cuts, color artistry, and grooming for all — crafted by expert stylists.",
+      image:
+        "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       link: "/salon",
       category: "Unisex Salon",
-      icon: <Scissors className="w-8 h-8" />,
       features: [
-        "Hair cutting & styling",
-        "Hair coloring & highlights",
-        "Hair treatments & care",
-        "Beard grooming (Men)",
-        "Special occasion styling"
-      ]
+        "Hair Styling",
+        "Color Treatments",
+        "Grooming",
+        "Specialized Care",
+      ],
     },
-    {
+     {
       id: 3,
       title: "Makeup",
       subtitle: "Unveil the Beauty, Shine with Confidence",
-      description: "Professional makeup services for all occasions. Our expert artists enhance your natural beauty with premium products and techniques.",
-      image: "/images/makeup.jpg",
+      description:
+        "Signature looks for bridal, events, and editorials — designed to enhance your natural elegance.",
+      image:
+        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       link: "/makeup",
       category: "Makeup",
-      icon: <Palette className="w-8 h-8" />,
       features: [
-        "Bridal makeup",
-        "Party & event makeup",
-        "Professional photoshoot makeup",
-        "Makeup consultation",
-        "Makeup lessons"
-      ]
-    }
+        "Bridal Makeup",
+        "Event Styling",
+        "Hair Styling",
+        "Party Makeup",
+      ],
+    },
   ]
 
   const filterCategories = ['All', 'Wellness Spa', 'Unisex Salon', 'Makeup']
 
-  const filteredServices = activeFilter === 'All' 
+  const filteredServices = filter === 'All' 
     ? services 
-    : services.filter(service => service.category === activeFilter)
+    : services.filter(service => service.category === filter)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-warm-50">
       {/* Hero Section */}
-      <section className="relative h-96 bg-gradient-to-r from-primary/90 to-primary/70 flex items-center justify-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-          style={{
-            backgroundImage: 'url(/images/services-hero.jpg)'
-          }}
-        ></div>
-        <div className="relative z-10 text-center text-white">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold mb-4"
-          >
-            Our Services
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl"
-          >
-            Complete Beauty & Wellness Solutions
-          </motion.p>
-        </div>
-      </section>
+     
 
-      {/* Filter Section */}
-      <section className="py-12">
-        <div className="container mx-auto px-4">
+      {/* Services Section */}
+      <section className="py-24 relative">
+        <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            viewport={{ once: true }}
+            className="text-center mb-20"
           >
-            <div className="flex justify-center flex-wrap gap-4">
-              {filterCategories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setActiveFilter(category)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                    activeFilter === category
-                      ? 'bg-primary text-white shadow-lg'
-                      : 'bg-white text-gray-700 hover:bg-gray-100 shadow-md'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+            <h2 className="section-title">Our Services</h2>
+            <p className="section-subtitle">
+              Comprehensive wellness and beauty solutions under one roof
+            </p>
+
+            {/* Filter Buttons */}
+            <div className="flex justify-center flex-wrap gap-4 mt-12">
+              {["All", "Wellness Spa", "Unisex Salon", "Makeup"].map(
+                (category) => (
+                  <motion.button
+                    key={category}
+                    onClick={() => setFilter(category)}
+                    className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
+                      filter === category
+                        ? "bg-primary-500 text-white shadow-soft-lg"
+                        : "bg-white text-gray-700 hover:bg-primary-50 border border-gray-200 hover:border-primary-300"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {category}
+                  </motion.button>
+                )
+              )}
             </div>
           </motion.div>
-        </div>
-      </section>
 
-      {/* Services Grid */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {filteredServices.map((service, index) => (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="service-card group"
-              >
-                {/* Image Section */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                    onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/400x300/cbab80/ffffff?text=${encodeURIComponent(service.title)}`
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white">
-                    {service.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services
+              .filter(
+                (service) => filter === "All" || service.category === filter
+              )
+              .map((service, index) => (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="service-card group"
+                  whileHover={{ y: -10 }}
+                >
+                  <div className="relative overflow-hidden rounded-t-3xl">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="image-overlay-warm opacity-60 group-hover:opacity-40 transition-opacity duration-300"></div>
+                    <div className="absolute top-6 right-6">
+                      <motion.div
+                        whileHover={{ scale: 1.1, rotate: 180 }}
+                        className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
+                      >
+                        <ArrowRight className="w-6 h-6" />
+                      </motion.div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Content Section */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                  <p className="text-primary font-medium mb-4">{service.subtitle}</p>
-                  <p className="text-gray-600 mb-6">{service.description}</p>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-serif font-bold mb-2 text-black">
+                      {service.title}
+                    </h3>
+                    <p className="text-primary-600 font-medium mb-3">
+                      {service.subtitle}
+                    </p>
+                    <p className="text-black mb-6 leading-relaxed">
+                      {service.description}
+                    </p>
 
-                  {/* Features List */}
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0"></div>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                    <div className="space-y-2 mb-6">
+                      {service.features.map((feature, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center text-sm text-black"
+                        >
+                          <CheckCircle className="w-4 h-4 text-primary-500 mr-2" />
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
 
-                  <Link
-                    to="/contact-us"
-                    className="w-full btn-primary text-center block"
-                  >
-                    Book Now
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+                    <Link
+                      to={service.link}
+                      className="btn-ghost w-full text-center group-hover:bg-primary-500 group-hover:text-white"
+                    >
+                      Explore Services
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
           </div>
         </div>
       </section>
 
       {/* Why Choose Our Services */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-gradient-to-br from-primary-600 to-warm-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="container-custom relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="section-title bg-white/90 backdrop-blur-sm rounded-2xl p-4 inline-block">
               Why Choose Our Services
             </h2>
-            <p className="text-xl text-primary-light max-w-3xl mx-auto">
+            <p className="text-xl text-primary-100 max-w-2xl mx-auto mt-2">
               Experience the perfect blend of traditional wisdom and modern techniques
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 title: "Expert Professionals",
@@ -230,10 +227,15 @@ const Services = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl"
+                viewport={{ once: true }}
+                className="floating-card p-6 text-center group bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5
+                }}
               >
-                <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                <p className="text-primary-light">{item.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -242,9 +244,10 @@ const Services = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <Link to="/contact-us" className="bg-white text-primary px-8 py-3 rounded-lg hover:bg-gray-100 transition-all duration-300 font-medium">
+            <Link to="/contact-us" className="btn-secondary">
               Book Your Appointment
             </Link>
           </motion.div>

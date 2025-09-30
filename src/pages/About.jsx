@@ -346,11 +346,11 @@ const About = () => {
                 }}
               >
                 <img
-                  src="/images/about-main.jpg"
-                  alt="Nagomi Interior"
+                  src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Luxury spa wellness setup with candles, towels, and natural elements"
                   className="w-full h-96 object-cover"
                   onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/600x400/cbab80/ffffff?text=Nagomi+Interior'
+                    e.target.src = 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
                   }}
                 />
                 
@@ -430,7 +430,7 @@ const About = () => {
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
                 
-                <div className="relative premium-card p-8 text-center overflow-hidden">
+                <div className="relative floating-card p-8 text-center overflow-hidden bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm">
                   <div className="absolute -top-10 -right-10 text-6xl opacity-10 group-hover:opacity-20 transition-opacity duration-500">
                     {stat.icon}
                   </div>
@@ -474,14 +474,19 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="feature-card"
+                viewport={{ once: true }}
+                className="floating-card p-8 text-center group bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5
+                }}
               >
                 {feature.icon}
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>

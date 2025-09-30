@@ -51,16 +51,27 @@ export default function Makeup() {
         <div className="container-custom">
           <h2 className="section-title">Why Choose Us?</h2>
           <p className="section-subtitle">Experienced artists, premium products, and personalized service.</p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               ['Experience Makeup Artists', 'Bridal, editorial, and occasion expertise.'],
               ['High Quality Products', 'Photography-safe, long-wear, and skin-loving.'],
               ['Personalized Service', 'Looks tailored to features, outfit, and light.'],
             ].map(([title, desc], i) => (
-              <div key={i} className="feature-card">
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="floating-card p-8 text-center group bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5
+                }}
+              >
                 <h3 className="section-heading mb-2 leading-tight">{title}</h3>
                 <p className="text-gray-600">{desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -69,10 +80,10 @@ export default function Makeup() {
       {/* CTA */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
-          <div className="premium-card text-center">
+          <div className="floating-card p-12 text-center bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm">
             <h3 className="text-3xl md:text-4xl font-serif font-semibold mb-4">Let’s Create Your Signature Look</h3>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">Share your occasion and mood board — we’ll craft a beautiful, enduring finish.</p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="/contact-us" className="btn-primary">Book a Trial</a>
               <a href="/services" className="btn-secondary">Explore All Services</a>
             </div>

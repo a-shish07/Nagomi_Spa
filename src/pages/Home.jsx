@@ -99,7 +99,7 @@ const Home = () => {
         "Specialized Care",
       ],
     },
-    {
+     {
       id: 3,
       title: "Makeup",
       subtitle: "Unveil the Beauty, Shine with Confidence",
@@ -308,7 +308,6 @@ const Home = () => {
               preload="auto"
               disablePictureInPicture
               controls={false}
-              poster="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
               className="w-full h-full object-cover"
             >
               <source src="/video.mp4" type="video/mp4" />

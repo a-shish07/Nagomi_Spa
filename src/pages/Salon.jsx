@@ -57,14 +57,19 @@ const Salon = () => {
           Salon Services
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           {salonServices.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.05 }}
-              className="service-card p-4"
+              viewport={{ once: true }}
+              className="floating-card p-6 bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
+              whileHover={{ 
+                scale: 1.05,
+                y: -5
+              }}
             >
               <h3 className="text-lg font-bold mb-3 text-black">{service.title}</h3>
               <ul className="space-y-1">

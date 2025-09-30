@@ -352,7 +352,7 @@ const Gallery = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-r from-primary-600 via-primary-700 to-warm-600 text-white relative overflow-hidden">
+      {/* <section className="py-24 bg-gradient-to-r from-primary-600 via-primary-700 to-warm-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container-custom relative">
           <motion.div
@@ -387,7 +387,7 @@ const Gallery = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

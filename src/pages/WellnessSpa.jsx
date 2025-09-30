@@ -113,16 +113,27 @@ export default function WellnessSpa() {
         <div className="container-custom">
           <h2 className="section-title">Why Choose Us?</h2>
           <p className="section-subtitle">We obsess over craft, care, and comfort — so every detail feels premium.</p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               ['Expert Therapist', 'Experienced hands, mindful touch, and technique-led therapies.'],
               ['Organic Products', 'Skin-safe, sensorial formulas chosen for results and relaxation.'],
               ['Luxurious Ambience', 'A serene, modern sanctuary with soft light, textures and calm.'],
             ].map(([title, desc], i) => (
-              <div key={i} className="feature-card">
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="floating-card p-8 text-center group bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5
+                }}
+              >
                 <h3 className="section-heading mb-2 leading-tight">{title}</h3>
                 <p className="text-gray-600">{desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -131,10 +142,10 @@ export default function WellnessSpa() {
       {/* CTA */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
-          <div className="premium-card text-center">
+          <div className="floating-card p-12 text-center bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm">
             <h3 className="text-3xl md:text-4xl font-serif font-semibold mb-4">Begin Your Wellness Journey</h3>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">Allow our experts to curate a personalized ritual tailored to your lifestyle and needs.</p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="/contact-us" className="btn-primary">Book Appointment</a>
               <a href="/services" className="btn-secondary">View All Services</a>
             </div>

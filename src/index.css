@@ -108,7 +108,7 @@
   
   /* Enhanced Button Components */
   .btn-primary {
-    @apply relative overflow-hidden bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white px-10 py-4 rounded-2xl font-display font-semibold tracking-wide transition-all duration-500 shadow-soft hover:shadow-glow transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm;
+    @apply relative overflow-hidden bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 text-white px-6 py-3 md:px-10 md:py-4 rounded-xl md:rounded-2xl font-display font-semibold tracking-wide transition-all duration-500 shadow-soft hover:shadow-glow transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm text-sm md:text-base;
   }
 
   .btn-primary::before {
@@ -130,7 +130,7 @@
   }
   
   .btn-secondary {
-    @apply  relative overflow-hidden bg-white/80 backdrop-blur-md border-2 border-primary-300 text-black px-10 py-4 rounded-2xl font-display font-semibold tracking-wide transition-all duration-500 shadow-soft hover:shadow-soft-lg hover:bg-primary-50 hover:border-primary-500 transform hover:-translate-y-1 hover:scale-105;
+    @apply  relative overflow-hidden bg-white/80 backdrop-blur-md border-2 border-primary-300 text-black px-6 py-3 md:px-10 md:py-4 rounded-xl md:rounded-2xl font-display font-semibold tracking-wide transition-all duration-500 shadow-soft hover:shadow-soft-lg hover:bg-primary-50 hover:border-primary-500 transform hover:-translate-y-1 hover:scale-105 text-sm md:text-base;
   }
 
   .btn-secondary::before {
@@ -241,7 +241,7 @@
   }
 
   .floating-card {
-    @apply relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-soft hover:shadow-glow transition-all duration-700 transform hover:-translate-y-3 hover:scale-105 overflow-hidden border border-white/50;
+    @apply relative bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-soft hover:shadow-glow transition-all duration-700 transform hover:-translate-y-2 md:hover:-translate-y-3 hover:scale-105 overflow-hidden border border-white/50;
   }
 
   .floating-card::before {

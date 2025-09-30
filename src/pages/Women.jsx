@@ -73,9 +73,20 @@ export default function Women() {
           <h2 className="section-title">Women’s Services</h2>
           <p className="section-subtitle">Premium treatments designed for visible results and long-lasting comfort.</p>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {blocks.map((b, i) => (
-              <motion.div key={i} variants={fade} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="morphing-card">
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }} 
+                className="floating-card p-8 bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -5
+                }}
+              >
                 <h3 className="section-heading m-0">{b.title}</h3>
                 <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-700">
                   {b.items.map((it, j) => (
@@ -94,10 +105,10 @@ export default function Women() {
       {/* CTA */}
       <section className="py-16 md:py-24">
         <div className="container-custom">
-          <div className="premium-card text-center">
+          <div className="floating-card p-12 text-center bg-gradient-to-br from-white/90 via-primary-50/50 to-warm-50/90 backdrop-blur-sm">
             <h3 className="text-3xl md:text-4xl font-serif font-semibold mb-4">Pamper Yourself with a Luxury Session</h3>
             <p className="text-gray-600 max-w-2xl mx-auto mb-8">Choose from rituals curated to your lifestyle — our team will personalize every detail.</p>
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="/contact-us" className="btn-primary">Book Now</a>
               <a href="/services" className="btn-secondary">All Services</a>
             </div>
